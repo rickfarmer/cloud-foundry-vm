@@ -66,6 +66,7 @@ _Note: The base VM can be “tuned” if you have more resources available on yo
 	- The Vagrant ESXi plugin, e.g.
 
 		`$ gem build vagrant-esxi.gemspec`	
+
 		`$ vagrant plugin install vagrant-esxi`
 
 2. Clone the repo to your local machine
@@ -75,6 +76,7 @@ _Note: The base VM can be “tuned” if you have more resources available on yo
 3. From the **`cloud-foundry-vm`** directory, launch the EXSi VM using Vagrant
 
 	`$ cd cloud-foundry-vm`
+
 	`$ vagrant up`
 
 	or, if you have **challenges** (_cough_ er, network issues) use,
