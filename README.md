@@ -9,13 +9,14 @@ The strategy is to:
 2. Automatically configure the challenging parts of Cloud Foundry — network and datastore.  In particular, share these resources among the virtualized ESXi hosts.
 3. What?!?  We are turning a laptop sized system into a full-fledged vSphere and Pivotal CF environment… not possible!  Maybe not… but
 	- “CPU core over-subscription is not something we worry about. vSphere 5.5′s Virtual CPU limit is 32 Virtual CPUs per core, which means that a 4-core Mac Pro could support as many as 128 Virtual CPUs. Cloud Foundry’s Engineering Team’s servers are often over-subscribed by a factor of more than 20:1 (i.e. as many as 240 cores allocated, but only 12 physical cores available).”  **Please see the excellent [Brian Cunnie IaaS articles](http://pivotallabs.com/worlds-smallest-iaas-part-3-paas/?tag=cloudfoundry#cpu_cores "World's Smallest IaaS") for more information.**
+
 		- RAM is the hard limit.  Cloud Foundry breathes RAM.  At a minimum we want to start with a physical machine that has 16Gb of physical RAM, take 12Gb of that per ESXi host instance and spin-up 4 of them for a total of 48Gb of virtualized, over-subscribed RAM made available for CF  
 
 **Special thanks go to [Doug MacEachern](https://github.com/dougm "Doug MacEachern") at [VMware](http://www.vmware.com "VMware") for putting together an awesome set of tooling in the form of his example [ESXi Packer template](https://github.com/dougm/packer-esxi "ESXi Packer template") and [ESXi Vagrant plug-in](https://github.com/dougm/vagrant-esxi "ESXi Vagrant plug-in") projects.**
 
 # Requirements
 
-_Currently, the instructions for using the Cloud Foundry VM is Mac OS X centric.  If running on a Windows or Linux machine please consider contributing the information back to this repository.  Thanks._
+_Currently, the instructions for using the Cloud Foundry VM are Mac OS X centric.  If running on a Windows or Linux machine please consider contributing the information back to this repository.  Thanks._
 
 ## Hardware
 
@@ -71,14 +72,14 @@ _Note: The base VM can be “tuned” if you have more resources available on yo
 
 	`$ git clone https://github.com/rickfarmer/cloud-foundry-vm.git`
 
-3. From the `cloud-foundry-vm` directory, launch the EXSi VM using Vagrant
+3. From the **`cloud-foundry-vm`** directory, launch the EXSi VM using Vagrant
 
 	`$ cd cloud-foundry-vm`
 	`$ vagrant up`
 
-or, if you have **challenges** (_cough_ er, network issues) use,
+	or, if you have **challenges** (_cough_ er, network issues) use,
 
-`$ VAGRANT_LOG=info vagrant up`
+	`$ VAGRANT_LOG=info vagrant up`
 
 4. Repeat and cluster…  **coming soon**
 
@@ -94,6 +95,9 @@ or, if you have **challenges** (_cough_ er, network issues) use,
 2. Install the Cloud Foundry CLI
 
 	`$ brew update`
+
 	`$ brew tap homebrew/binary`
+
 	`$ brew install caskroom/cask/brew-cask`
+
 	`$ brew cask install cloudfoundry-cli`
