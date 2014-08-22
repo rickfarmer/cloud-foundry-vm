@@ -1,0 +1,39 @@
+# Vagrant.require_plugin "vagrant-esxi"
+
+
+File.open("version.txt", 'w') do |f|
+  f.write(Vagrant::VERSION)
+end
+
+Vagrant.configure("2") do |config|
+  config.ssh.default.username = "root"
+  config.ssh.shell = "sh"
+
+  config.vm.box = "vmware_esxi55"
+  config.vm.hostname = "esxi"
+  
+  # Datastore config (use NFS as a shared folder)
+  config.vm.synced_folder '.', '/vagrant', nfs: true, id: 'vagrant-root'
+
+  # Network config
+  config.vm.network 'private_network', ip: '10.9.8.10'
+  config.vm.network :public_network, bridge: 'en0: Ethernet 1', mac: '010000000000', use_dhcp_assigned_default_route: true
+  
+  
+  # VMware config
+  [:vmware_workstation, :vmware_fusion].each do |name|
+    config.vm.provider name do |v,override|
+      
+      config.vm.provision "shell", inline: "echo Using VMware provisioner"
+      config.vm.box_url = "http://s3.amazonaws.com/pse-boxes/vmware_esxi55.box"
+      v.gui = true
+      v.vmx["memsize"] = "12288"
+      v.vmx["numvcpus"] = "4"
+      v.vmx["cpuid.coresPerSocket"] = "2"
+    end
+  end
+
+
+  config.vm.provision "shell", privileged: false, path: "provision.sh"
+  config.vm.provision "shell", inline: "echo Configuration complete"
+end
