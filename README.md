@@ -10,7 +10,7 @@ The strategy is to:
 3. What?!?  We are turning a laptop sized system into a full-fledged vSphere and Pivotal CF environment… not possible!  Maybe not… but
 	- “CPU core over-subscription is not something we worry about. vSphere 5.5′s Virtual CPU limit is 32 Virtual CPUs per core, which means that a 4-core Mac Pro could support as many as 128 Virtual CPUs. Cloud Foundry’s Engineering Team’s servers are often over-subscribed by a factor of more than 20:1 (i.e. as many as 240 cores allocated, but only 12 physical cores available).”  **Please see the excellent [Brian Cunnie IaaS articles](http://pivotallabs.com/worlds-smallest-iaas-part-3-paas/?tag=cloudfoundry#cpu_cores "World's Smallest IaaS") for more information.**
 
-		- RAM is the hard limit.  Cloud Foundry breathes RAM.  At a minimum we want to start with a physical machine that has 16Gb of physical RAM, take 12Gb of that per ESXi host instance and spin-up 4 of them for a total of 48Gb of virtualized, over-subscribed RAM made available for CF  
+		- RAM is the hard limit.  Cloud Foundry breathes RAM.  At a minimum we want to start with a physical machine that has 16Gb of physical RAM, take 12Gb of that per ESXi host instance and spin-up 4 of them for a total of 48Gb of virtualized, over-subscribed RAM made available for CF
 
 **Special thanks go to [Doug MacEachern](https://github.com/dougm "Doug MacEachern") at [VMware](http://www.vmware.com "VMware") for putting together an awesome set of tooling in the form of his example [ESXi Packer template](https://github.com/dougm/packer-esxi "ESXi Packer template") and [ESXi Vagrant plug-in](https://github.com/dougm/vagrant-esxi "ESXi Vagrant plug-in") projects.**
 
@@ -48,7 +48,7 @@ We are building a single VM with the following specifications (which we ultimate
 	- 4 vCPUs (recommend 12 vCPUs or greater)
 	- 750Gb datastore (recommend 1TB or more)
 	- 10.9.8.1/24 network 
-- vCenter
+- [VMware vCenter Server 5.5 Update 1c](https://my.vmware.com/group/vmware/details?downloadGroup=VC55U1C&productId=351&rPId=6244 "vCenter")
 - Pivotal CF (Cloud Foundry)
 
 _Note: The base VM can be “tuned” if you have more resources available on your machine to get it up to the recommended specs via the `Vagrantfile`)_
@@ -62,7 +62,7 @@ _Note: The base VM can be “tuned” if you have more resources available on yo
 	- [Vagrant VMware Fusion plugin](http://www.vagrantup.com/vmware) (paid plugin)
 
 		`$ vagrant plugin license vagrant-vmware-fusion license.lic`
-		 
+			  
 	- The Vagrant ESXi plugin, e.g.
 
 		`$ vagrant plugin install vagrant-esxi`
@@ -101,3 +101,9 @@ _Note: The base VM can be “tuned” if you have more resources available on yo
 	`$ brew install caskroom/cask/brew-cask`
 
 	`$ brew cask install cloudfoundry-cli`
+
+
+
+# Configure vCenter
+
+[https://developercenter.vmware.com/tool/ovf/3.5.0](https://developercenter.vmware.com/tool/ovf/3.5.0)
