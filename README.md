@@ -47,22 +47,22 @@ We are building a single VM with the following specifications (which we ultimate
 	- 12Gb RAM (recommend 48Gb or greater)
 	- 4 vCPUs (recommend 12 vCPUs or greater)
 	- 750Gb datastore (recommend 1TB or more)
-	- 10.9.8.1/24 network 
+	- 10.9.8.1/24 network
 - [VMware vCenter Server 5.5 Update 1c](https://my.vmware.com/group/vmware/details?downloadGroup=VC55U1C&productId=351&rPId=6244 "vCenter")
 - Pivotal CF (Cloud Foundry)
 
 _Note: The base VM can be “tuned” if you have more resources available on your machine to get it up to the recommended specs via the `Vagrantfile`)_
 
 
-# tl;dr - Install and Run on Mac OS X
+# TL;DR - Install and Run on Mac OS X
 
-1. Be sure you have installed, 
+1. Be sure you have installed,
 	- [VMware Fusion 6.x](http://www.vmware.com/products/fusion "VMware Fusion")
 	- [Vagrant](http://docs.vagrantup.com/v2/installation/)
 	- [Vagrant VMware Fusion plugin](http://www.vagrantup.com/vmware) (paid plugin)
 
 		`$ vagrant plugin license vagrant-vmware-fusion license.lic`
-			  
+
 	- The Vagrant ESXi plugin, e.g.
 
 		`$ vagrant plugin install vagrant-esxi`
